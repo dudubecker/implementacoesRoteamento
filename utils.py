@@ -128,26 +128,4 @@ def PDPTW_instancia(path):
     df.columns = ['XCOORD','YCOORD','SERVICE','DEMAND','READY TIME','DUE DATE']
     
     return (df, {'n_requests': n_requests, 'Q': Q})
-
-def plot_inst_PDPTW(df, instancia):
-    
-    df_plot = df.copy()
-    
-    df_plot['NODE_TYPE'] = ['Depot'] + ['Pickup' if demand >= 0 else 'Delivery' for demand in df_plot['DEMAND'] if demand != 0] + ['Depot']
-    
-    plt.figure(figsize=(15,10))
-    
-    sns.scatterplot(x=df_plot['XCOORD'],y=df_plot['YCOORD'], hue=df_plot['NODE_TYPE'])
-    
-    plt.title('Vértices da instância {}'.format(instancia), fontsize=20)
-    
-    plt.xlabel('X', fontsize=20)
-
-    plt.ylabel('Y', fontsize=20)
-
-    plt.legend(fontsize=16)
-    plt.yticks(fontsize=16)
-    plt.xticks(fontsize=16)
-
-    plt.show()
     
